@@ -1,0 +1,79 @@
+class Solution {
+    fun romanToInt(s: String): Int {
+        var result = 0
+        var charS : Char 
+         var cancel : Boolean = false
+        for(i in 0..s.length-1){
+
+            if(cancel){  
+                cancel = false
+             continue}
+            charS = s[i]
+            val next = i + 1
+            if(next < s.length){
+
+            if(charS == 'I' ){
+              val solve =  when(s[next]){
+                    'V' -> 4 
+                    'X' -> 9
+                    else -> 0
+                }
+              if(solve != 0) { 
+                  result += solve
+                  cancel = true
+                  
+              }else 
+            result += checkChar(charS)
+                
+            }else if(charS == 'X' ){
+              val solve =  when(s[next]){
+                    'L' -> 40
+                    'C' -> 90
+                    else -> 0
+                }
+                 if(solve != 0) { 
+                  result += solve
+                  cancel = true
+
+              }else 
+            result += checkChar(charS)
+      
+            }else if(charS == 'C' ){
+             val solve =  when(s[next]){
+                    'D' -> 400
+                    'M' -> 900
+                    else -> 0
+                }
+                 if(solve != 0) { 
+                  result += solve
+                  cancel = true
+                  
+              }else 
+            result += checkChar(charS)
+               
+            }else 
+            result += checkChar(charS)
+                
+            }else
+            result += checkChar(charS)
+ 
+            }
+
+        
+    return result 
+    }
+
+    fun checkChar(c : Char): Int {
+    return when (c) {
+                    'I' -> 1
+                    'V' -> 5
+                    'X'-> 10
+                    'L' -> 50
+                    'C' -> 100
+                    'D'-> 500
+                    'M' -> 1000
+                    else -> 0
+                }
+                
+}
+}
